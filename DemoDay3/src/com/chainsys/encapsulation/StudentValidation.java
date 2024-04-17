@@ -22,25 +22,34 @@ public class StudentValidation
 					System.out.println("Student Detail");
 					System.out.println("==============");
 					System.out.println("Id\tName\tAddress");
-					System.out.println("-----------------");
+					System.out.println("---------------------------");
 					System.out.println(s1.getId()+"\t"+s1.getName()+"\t"+s1.getAddress());
 				}
 				else
 				{
 					System.out.println("Please enter valid address");
-					Student.details();
+					StudentValidation.details();
 				}
 			}
 			else
 			{
 				System.out.println("Name should be alphabet & 1st character uppercase");
-				Student.details();
+				StudentValidation.details();
 			}
 		}
 		else
 		{
 			System.out.println("Id should be Integers...");
-			Student.details();
+			StudentValidation.details();
 		}
+		sc.close();
+	}
+	public static void details()
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter Id");
+		int id=sc.nextInt();
+		StudentValidation.validation(id);
+		sc.close();
 	}
 }

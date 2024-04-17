@@ -1,5 +1,4 @@
 package com.chainsys.encapsulation;
-import java.util.Scanner;
 public class Student 
 {
 	int id;
@@ -38,12 +37,5 @@ public class Student
 	@Override
 	public String toString() {
 		return "Student [id=" + id + ", name=" + name + ", address=" + address + "]";
-	}
-	public static void details()
-	{
-		Scanner sc=new Scanner(System.in);
-		System.out.println("Enter Id");
-		int id=sc.nextInt();
-		StudentValidation.validation(id);
 	}
 }

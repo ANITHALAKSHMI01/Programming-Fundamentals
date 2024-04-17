@@ -3,6 +3,6 @@ public class TestStudent
 {
 	public static void main(String[] args)
 	{
-		Student.details();
+		StudentValidation.details();
 	}
 }
