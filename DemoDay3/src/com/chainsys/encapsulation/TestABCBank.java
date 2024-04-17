@@ -6,7 +6,6 @@ public class TestABCBank
 	{
 		Scanner scn=new Scanner(System.in);
 		TestABCBank.getUserDetails();
-		scn.close();
 	}
 	public static void getUserDetails()
 	{

@@ -13,7 +13,33 @@ public class BankValidation
 		if(name.matches(regex))
 		{
 			bank.setName(name);
-			BankValidation.phoneNo();	
+			System.out.println("Enter Phone number");
+			long phoneNo=scn.nextLong();
+			String stringPhoneNo=Long.toString(phoneNo);
+			String regex1="(91|0)?[6-9][0-9]{9}$";
+			if(stringPhoneNo.matches(regex1))
+			{
+				long phoneNo1=Long.parseLong(stringPhoneNo);
+				bank.setPhoneNo(phoneNo1);
+				long accountNo=BankValidation.accountNo();
+				bank.setAccountNo(accountNo);
+				System.out.println("Enter deposit amount");
+				int deposit=scn.nextInt();
+				if(deposit>0)
+				{
+					bank.setDeposit(deposit);
+				}
+				else
+				{
+					System.out.println("Deposit should be Positive value");
+					TestABCBank.getUserDetails();
+				}
+			}
+			else
+			{
+				System.out.println("Phone Number should start 6-9 & must 10 digits");
+				TestABCBank.getUserDetails();
+			}
 		}
 		else
 		{
@@ -36,17 +62,18 @@ public class BankValidation
 			   default:System.out.println("Please enter 1 or 2");
 				     
 			}
-			System.out.println("Account Details");
-			System.out.println("===============");
-			System.out.println("Name               : "+bank.getName());
-			System.out.println("Account Number     : "+bank.getAccountNo());
-			System.out.println("Phone Number       : "+bank.getPhoneNo());
-			System.out.println("Deposit Amount     : "+bank.getDeposit());
-			TestABCBank.showAvailableSavingPlans(bank.getDeposit());
-			bank.setAvailableBalance(100000.50+bank.getDeposit());
-	        System.out.println("AvailableBalance   : "+bank.getAvailableBalance());
+			
 		}	
-		scn.close();
+		System.out.println("Account Details");
+		System.out.println("===============");
+		System.out.println("Name               : "+bank.getName());
+		System.out.println("Account Number     : "+bank.getAccountNo());
+		System.out.println("Phone Number       : "+bank.getPhoneNo());
+		System.out.println("Deposit Amount     : "+bank.getDeposit());
+		TestABCBank.showAvailableSavingPlans(bank.getDeposit());
+		bank.setAvailableBalance(100000.50+bank.getDeposit());
+        System.out.println("AvailableBalance   : "+bank.getAvailableBalance());
+
 	}
 	public static long accountNo()
 	{
@@ -54,45 +81,5 @@ public class BankValidation
 		Random randomAccountNo=new Random();
 		accountNo=randomAccountNo.nextLong(1000000000000l);
 		return accountNo;
-	}
-	public static void phoneNo()
-	{
-		Scanner scn=new Scanner(System.in);
-		ABCBank bank=new ABCBank();
-		System.out.println("Enter Phone number");
-		long phoneNo=scn.nextLong();
-		String stringPhoneNo=Long.toString(phoneNo);
-		String regex1="(91|0)?[6-9][0-9]{9}$";
-		if(stringPhoneNo.matches(regex1))
-		{
-			long phoneNo1=Long.parseLong(stringPhoneNo);
-			bank.setPhoneNo(phoneNo1);
-			long accountNo=BankValidation.accountNo();
-			bank.setAccountNo(accountNo);
-			BankValidation.depositAmount();
-		}
-		else
-		{
-			System.out.println("Phone Number should start 6-9 & must 10 digits");
-			BankValidation.phoneNo();
-		}
-		scn.close();
-	}
-	public static void depositAmount()
-	{
-		Scanner scn=new Scanner(System.in);
-		ABCBank bank=new ABCBank();
-		System.out.println("Enter deposit amount");
-		int deposit=scn.nextInt();
-		if(deposit>0)
-		{
-			bank.setDeposit(deposit);	
-		}
-		else
-		{
-			System.out.println("Deposit should be Positive value");
-			BankValidation.depositAmount();
-		}
-		scn.close();
 	}
 }
