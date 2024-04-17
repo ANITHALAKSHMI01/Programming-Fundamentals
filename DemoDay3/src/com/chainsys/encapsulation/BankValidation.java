@@ -62,17 +62,17 @@ public class BankValidation
 			   default:System.out.println("Please enter 1 or 2");
 				     
 			}
+			System.out.println("Account Details");
+			System.out.println("===============");
+			System.out.println("Name               : "+bank.getName());
+			System.out.println("Account Number     : "+bank.getAccountNo());
+			System.out.println("Phone Number       : "+bank.getPhoneNo());
+			System.out.println("Deposit Amount     : "+bank.getDeposit());
+			TestABCBank.showAvailableSavingPlans(bank.getDeposit());
+			bank.setAvailableBalance(100000.50+bank.getDeposit());
+	        System.out.println("AvailableBalance   : "+bank.getAvailableBalance());
 			
 		}	
-		System.out.println("Account Details");
-		System.out.println("===============");
-		System.out.println("Name               : "+bank.getName());
-		System.out.println("Account Number     : "+bank.getAccountNo());
-		System.out.println("Phone Number       : "+bank.getPhoneNo());
-		System.out.println("Deposit Amount     : "+bank.getDeposit());
-		TestABCBank.showAvailableSavingPlans(bank.getDeposit());
-		bank.setAvailableBalance(100000.50+bank.getDeposit());
-        System.out.println("AvailableBalance   : "+bank.getAvailableBalance());
 
 	}
 	public static long accountNo()
