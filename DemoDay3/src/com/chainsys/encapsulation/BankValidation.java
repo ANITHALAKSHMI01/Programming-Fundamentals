@@ -13,50 +13,8 @@ public class BankValidation
 		if(name.matches(regex))
 		{
 			bank.setName(name);
-//			System.out.println("Enter Account Number");
-//			long accountNo=scn.nextLong();
-//			String stringAccountNo=Long.toString(accountNo);
-//			String regex2="^[0-9]{9,13}$";
-//			if(stringAccountNo.matches(regex2))
-//			{
-//				long accountNo1=Long.parseLong(stringAccountNo);
-//				bank.setAccountNo(accountNo1);
-				System.out.println("Enter Phone number");
-				{
-					long phoneNo=scn.nextLong();
-					String stringPhoneNo=Long.toString(phoneNo);
-					String regex1="(91|0)?[6-9][0-9]{9}$";
-					if(stringPhoneNo.matches(regex1))
-					{
-						long phoneNo1=Long.parseLong(stringPhoneNo);
-						bank.setPhoneNo(phoneNo1);
-						long accountNo=BankValidation.accountNo();
-						bank.setAccountNo(accountNo);
-						System.out.println("Enter deposit amount");
-						int deposit=scn.nextInt();
-						if(deposit>0)
-						{
-							bank.setDeposit(deposit);	
-						}
-						else
-						{
-							System.out.println("Deposit should be Positive value");
-							TestABCBank.getUserDetails();
-						}
-					}
-					else
-					{
-						System.out.println("Phone Number should start 6-9 & must 10 digits");
-						TestABCBank.getUserDetails();
-					}
-				}
-			}
-////			else
-////			{
-////				System.out.println("Acount Number should be Positive & must contain 11-18 digits");
-////				TestABCBank.getUserDetails();
-////			}	
-//		}
+			BankValidation.phoneNo();	
+		}
 		else
 		{
 			System.out.println("Name should be alphabet");
@@ -96,5 +54,45 @@ public class BankValidation
 		Random randomAccountNo=new Random();
 		accountNo=randomAccountNo.nextLong(1000000000000l);
 		return accountNo;
+	}
+	public static void phoneNo()
+	{
+		Scanner scn=new Scanner(System.in);
+		ABCBank bank=new ABCBank();
+		System.out.println("Enter Phone number");
+		long phoneNo=scn.nextLong();
+		String stringPhoneNo=Long.toString(phoneNo);
+		String regex1="(91|0)?[6-9][0-9]{9}$";
+		if(stringPhoneNo.matches(regex1))
+		{
+			long phoneNo1=Long.parseLong(stringPhoneNo);
+			bank.setPhoneNo(phoneNo1);
+			long accountNo=BankValidation.accountNo();
+			bank.setAccountNo(accountNo);
+			BankValidation.depositAmount();
+		}
+		else
+		{
+			System.out.println("Phone Number should start 6-9 & must 10 digits");
+			BankValidation.phoneNo();
+		}
+		scn.close();
+	}
+	public static void depositAmount()
+	{
+		Scanner scn=new Scanner(System.in);
+		ABCBank bank=new ABCBank();
+		System.out.println("Enter deposit amount");
+		int deposit=scn.nextInt();
+		if(deposit>0)
+		{
+			bank.setDeposit(deposit);	
+		}
+		else
+		{
+			System.out.println("Deposit should be Positive value");
+			BankValidation.depositAmount();
+		}
+		scn.close();
 	}
 }
